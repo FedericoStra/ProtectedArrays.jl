@@ -58,15 +58,7 @@ Base.@propagate_inbounds Base.getindex(pa::ProtectedArray, indices...) = getinde
                  use `unprotect` if you really know what you're doing.""")
 end
 
-Base.IteratorEltype(::Type{ProtectedArray{T,N,A}}) where {T,N,A} = Base.IteratorEltype(A)
-Base.eltype(::Type{ProtectedArray{T,N,A}}) where {T,N,A} = eltype(A)
-
-Base.IteratorSize(::Type{ProtectedArray{T,N,A}}) where {T,N,A} = Base.IteratorSize(A)
-@inline Base.size(pa::ProtectedArray) = size(parent(pa))
-@inline Base.length(pa::ProtectedArray) = length(parent(pa))
 @inline Base.axes(pa::ProtectedArray) = axes(parent(pa))
-
-@inline Base.iterate(pa::ProtectedArray, state...) = iterate(parent(pa), state...)
 
 function Base.showarg(io::IO, @nospecialize(a::ProtectedArray{T,N}), toplevel) where {T,N}
     toplevel || print(io, "::")
@@ -83,5 +75,7 @@ function Base.showarg(io::IO, @nospecialize(a::ProtectedArray{T,N}), toplevel) w
     toplevel && print(io, " with eltype ", eltype(a))
     return nothing
 end
+
+include("iteration.jl")
 
 end
