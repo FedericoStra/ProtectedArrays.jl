@@ -69,5 +69,6 @@ end
 include("iteration.jl")
 include("indexing.jl")
 include("abstract_array.jl")
+include("strided_array.jl")
 
 end

@@ -23,6 +23,7 @@ Types of changes:
   - iteration,
   - indexing,
   - abstract array,
+  - strided array.
 
 ## [0.1.0]
 
