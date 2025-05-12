@@ -22,6 +22,7 @@ Types of changes:
 - Standard [interfaces](https://docs.julialang.org/en/v1/manual/interfaces/):
   - iteration,
   - indexing,
+  - abstract array,
 
 ## [0.1.0]
 

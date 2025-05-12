@@ -50,8 +50,6 @@ See also [`protect`](@ref).
 unprotect(pa::ProtectedArray) = pa.parent
 Base.parent(pa::ProtectedArray) = pa.parent
 
-@inline Base.axes(pa::ProtectedArray) = axes(parent(pa))
-
 function Base.showarg(io::IO, @nospecialize(a::ProtectedArray{T,N}), toplevel) where {T,N}
     toplevel || print(io, "::")
     if N == 1
@@ -70,5 +68,6 @@ end
 
 include("iteration.jl")
 include("indexing.jl")
+include("abstract_array.jl")
 
 end
