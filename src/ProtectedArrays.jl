@@ -50,14 +50,6 @@ See also [`protect`](@ref).
 unprotect(pa::ProtectedArray) = pa.parent
 Base.parent(pa::ProtectedArray) = pa.parent
 
-Base.@propagate_inbounds Base.getindex(pa::ProtectedArray, indices...) = getindex(parent(pa), indices...)
-
-@inline function Base.setindex!(::ProtectedArray, _, _)
-    error("""
-          `ProtectedArray` does not allow modifying elements with `setindex!`,
-                 use `unprotect` if you really know what you're doing.""")
-end
-
 @inline Base.axes(pa::ProtectedArray) = axes(parent(pa))
 
 function Base.showarg(io::IO, @nospecialize(a::ProtectedArray{T,N}), toplevel) where {T,N}
@@ -77,5 +69,6 @@ function Base.showarg(io::IO, @nospecialize(a::ProtectedArray{T,N}), toplevel) w
 end
 
 include("iteration.jl")
+include("indexing.jl")
 
 end
