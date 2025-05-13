@@ -39,3 +39,30 @@ test_iteration(transpose([1 2 3; 4 5 6]))
 test_iteration(transpose(OffsetArray([1 2 3; 4 5 6], (100, 10))))
 test_iteration(transpose(SArray{Tuple{2,3}}([1 2 3; 4 5 6])))
 test_iteration(transpose(MArray{Tuple{2,3}}([1 2 3; 4 5 6])))
+
+test_iteration(
+    PermutedDimsArray(
+        reshape(Vector(1:3*5*7), (3,5,7)),
+        (2,1,3)
+    )
+)
+test_iteration(
+    @view PermutedDimsArray(
+        reshape(Vector(1:3*5*7), (3,5,7)),
+        (2,1,3)
+    )[begin:2:end, end:-1:begin, end:-2:begin]
+)
+test_iteration(
+    PermutedDimsArray(
+        (@view reshape(Vector(1:3*5*7), (3,5,7))[begin:2:end, end:-1:begin, end:-2:begin]),
+        (2,1,3)
+    )
+)
+
+test_iteration(reinterpret(Int32, reshape(1:6, (2,3))))
+test_iteration(reinterpret(Int32, reshape(Vector(1:6), (2,3))))
+test_iteration(reinterpret(reshape, Int32, reshape(1:6, (2,3))))
+test_iteration(reinterpret(reshape, Int32, reshape(Vector(1:6), (2,3))))
+
+test_iteration(reshape(view(randn(40,40), 1:36, 1:20), (6,6,5,4)))
+test_iteration(reshape(view(randn(40,40), 1:36, 1:20), (6,3,10,4)))
