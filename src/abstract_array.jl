@@ -5,6 +5,8 @@
 Base.IndexStyle(::Type{ProtectedArray{T,N,A}}) where {T,N,A} = Base.IndexStyle(A)
 
 @inline Base.axes(pa::ProtectedArray) = axes(parent(pa))
+# Defining `axes(pa::ProtectedArray, d)` is superfluous because there is already
+# `axes(a::AbstractArray, d)` that does the correct thing.
 
 """
     similar(pa::ProtectedArray, eltype=eltype(pa), dims=size(pa))
