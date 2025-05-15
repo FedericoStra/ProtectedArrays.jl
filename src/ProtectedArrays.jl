@@ -36,6 +36,7 @@ Wrap an array into a [`ProtectedArray`](@ref) to prevent modifications.
 
 See also [`unprotect`](@ref).
 """
+function protect end
 protect(array::AbstractArray) = ProtectedArray(array)
 
 """
@@ -47,6 +48,7 @@ This is a synonym of [`parent`](@extref Base.parent).
 
 See also [`protect`](@ref).
 """
+function unprotect end
 unprotect(pa::ProtectedArray) = pa.parent
 Base.parent(pa::ProtectedArray) = pa.parent
 
