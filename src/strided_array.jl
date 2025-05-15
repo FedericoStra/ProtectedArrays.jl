@@ -13,6 +13,8 @@
 # See <https://github.com/JuliaLang/julia/issues/58403> for a discussion.
 #
 # Therefore, for the time being we have to override `stride` ourselves.
+#
+# See <https://github.com/FedericoStra/NextStride.jl> for a possible alternative.
 @inline Base.stride(pa::ProtectedArray, k::Integer) = stride(parent(pa), k)
 
 @inline Base.elsize(::Type{ProtectedArray{T,N,A}}) where {T,N,A} = Base.elsize(A)
