@@ -25,6 +25,11 @@ Types of changes:
   - abstract array,
   - strided array.
 
+### Changed
+
+- Minimum compatible Julia version is now `1.9`, in order to have support for
+  [package extensions](https://docs.julialang.org/en/v1/manual/code-loading/#man-extensions).
+
 ## [0.1.0]
 
 ### Added

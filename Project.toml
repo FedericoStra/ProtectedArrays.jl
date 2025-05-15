@@ -1,9 +1,22 @@
 name = "ProtectedArrays"
 uuid = "cc189d76-b79b-4429-8ac4-62283b8a79d2"
-authors = ["Federico Stra <stra.federico@gmail.com> and contributors"]
-desc = "Array wrapper to prevent modifications"
 license = "MIT"
+desc = "Array wrapper to prevent modifications"
+authors = ["Federico Stra <stra.federico@gmail.com> and contributors"]
 version = "0.1.0"
 
+[weakdeps]
+Adapt = "79e6a3ab-5dfb-504d-930d-738a2a938a0e"
+ArrayInterface = "4fba245c-0d91-5ea0-9b3e-6abc04ee57a9"
+ArrayLayouts = "4c555306-a7a7-4459-81d9-ec55ddd5c99a"
+
+[extensions]
+AdaptExt = "Adapt"
+ArrayInterfaceExt = "ArrayInterface"
+ArrayLayoutsExt = "ArrayLayouts"
+
 [compat]
-julia = "1.8"
+Adapt = "4"
+ArrayInterface = "7"
+ArrayLayouts = "1"
+julia = "1.9"
