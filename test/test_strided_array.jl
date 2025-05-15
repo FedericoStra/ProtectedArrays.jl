@@ -8,7 +8,7 @@ function test_strided_array(a::AbstractArray)
 
         @test Base.elsize(pa) == Base.elsize(a)
         @test strides(pa) == strides(a)
-        for d in 1:ndims(a)
+        for d in 1:ndims(a)+2
             @test stride(pa, d) == stride(a, d)
         end
 

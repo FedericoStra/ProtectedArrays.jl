@@ -9,7 +9,7 @@ function test_iteration(a::AbstractArray)
         @test Base.IteratorSize(pa) == Base.IteratorSize(a)
         @test length(pa) == length(a)
         @test size(pa) == size(a)
-        for d in 1:ndims(a)
+        for d in 1:ndims(a)+2
             @test size(pa, d) == size(a, d)
         end
 
