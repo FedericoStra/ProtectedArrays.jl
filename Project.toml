@@ -16,4 +16,7 @@ ArrayInterfaceExt = "ArrayInterface"
 ArrayLayoutsExt = "ArrayLayouts"
 
 [compat]
+Adapt = "4"
+ArrayInterface = "7"
+ArrayLayouts = "1"
 julia = "1.9"
