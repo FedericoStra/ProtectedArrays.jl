@@ -11,6 +11,7 @@ ArrayInterface = "4fba245c-0d91-5ea0-9b3e-6abc04ee57a9"
 ArrayLayouts = "4c555306-a7a7-4459-81d9-ec55ddd5c99a"
 
 [extensions]
+AdaptExt = "Adapt"
 ArrayInterfaceExt = "ArrayInterface"
 ArrayLayoutsExt = "ArrayLayouts"
 
