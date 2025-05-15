@@ -3,7 +3,7 @@ uuid = "cc189d76-b79b-4429-8ac4-62283b8a79d2"
 license = "MIT"
 desc = "Array wrapper to prevent modifications"
 authors = ["Federico Stra <stra.federico@gmail.com> and contributors"]
-version = "0.1.0"
+version = "0.2.0"
 
 [weakdeps]
 Adapt = "79e6a3ab-5dfb-504d-930d-738a2a938a0e"
