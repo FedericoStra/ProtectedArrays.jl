@@ -6,9 +6,12 @@ authors = ["Federico Stra <stra.federico@gmail.com> and contributors"]
 version = "0.1.0"
 
 [weakdeps]
+Adapt = "79e6a3ab-5dfb-504d-930d-738a2a938a0e"
+ArrayInterface = "4fba245c-0d91-5ea0-9b3e-6abc04ee57a9"
 ArrayLayouts = "4c555306-a7a7-4459-81d9-ec55ddd5c99a"
 
 [extensions]
+ArrayInterfaceExt = "ArrayInterface"
 ArrayLayoutsExt = "ArrayLayouts"
 
 [compat]
