@@ -10,7 +10,7 @@ Wrapper around an array which disables [`setindex!`](@extref Base.setindex!) to 
 
 See also [`protect`](@ref) and [`unprotect`](@ref).
 """
-struct ProtectedArray{T,N,A<:AbstractArray{T,N}} <: AbstractArray{T,N}
+struct ProtectedArray{T, N, A <: AbstractArray{T, N}} <: AbstractArray{T, N}
     parent::A
 end
 
@@ -19,14 +19,14 @@ end
 
 Type alias and convenience constructor for two-dimensional [`ProtectedArray`](@ref)s.
 """
-const ProtectedMatrix{T,A<:AbstractMatrix{T}} = ProtectedArray{T,2,A}
+const ProtectedMatrix{T, A <: AbstractMatrix{T}} = ProtectedArray{T, 2, A}
 
 """
     ProtectedVector(vector)
 
 Type alias and convenience constructor for one-dimensional [`ProtectedArray`](@ref)s.
 """
-const ProtectedVector{T,A<:AbstractVector{T}} = ProtectedArray{T,1,A}
+const ProtectedVector{T, A <: AbstractVector{T}} = ProtectedArray{T, 1, A}
 
 
 """
@@ -52,7 +52,7 @@ function unprotect end
 unprotect(pa::ProtectedArray) = pa.parent
 Base.parent(pa::ProtectedArray) = pa.parent
 
-function Base.showarg(io::IO, @nospecialize(a::ProtectedArray{T,N}), toplevel) where {T,N}
+function Base.showarg(io::IO, @nospecialize(a::ProtectedArray{T, N}), toplevel) where {T, N}
     toplevel || print(io, "::")
     if N == 1
         print(io, "ProtectedVector(")

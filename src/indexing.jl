@@ -5,13 +5,15 @@
 using Base: @propagate_inbounds
 
 @propagate_inbounds function Base.getindex(pa::ProtectedArray, indices...)
-    getindex(parent(pa), indices...)
+    return getindex(parent(pa), indices...)
 end
 
 @inline function Base.setindex!(::ProtectedArray, _, _)
-    error("""
-          `ProtectedArray` does not allow modifying elements with `setindex!`,
-                 use `unprotect` if you really know what you're doing.""")
+    error(
+        """
+        `ProtectedArray` does not allow modifying elements with `setindex!`,
+               use `unprotect` if you really know what you're doing."""
+    )
 end
 
 @inline firstindex(pa::ProtectedArray) = firstindex(parent(pa))
