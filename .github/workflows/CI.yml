@@ -79,3 +79,9 @@ jobs:
           using ProtectedArrays
           DocMeta.setdocmeta!(ProtectedArrays, :DocTestSetup, :(using ProtectedArrays); recursive=true)
           doctest(ProtectedArrays)
+  runic:
+    name: Runic
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: fredrikekre/runic-action@v1
