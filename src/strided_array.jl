@@ -17,8 +17,8 @@
 # See <https://github.com/FedericoStra/NextStride.jl> for a possible alternative.
 @inline Base.stride(pa::ProtectedArray, k::Integer) = stride(parent(pa), k)
 
-@inline Base.elsize(::Type{ProtectedArray{T,N,A}}) where {T,N,A} = Base.elsize(A)
+@inline Base.elsize(::Type{ProtectedArray{T, N, A}}) where {T, N, A} = Base.elsize(A)
 
-@inline function Base.unsafe_convert(::Type{Ptr{T}}, pa::ProtectedArray{T}) where T
-    Base.unsafe_convert(Ptr{T}, parent(pa))
+@inline function Base.unsafe_convert(::Type{Ptr{T}}, pa::ProtectedArray{T}) where {T}
+    return Base.unsafe_convert(Ptr{T}, parent(pa))
 end

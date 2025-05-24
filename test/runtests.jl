@@ -3,10 +3,14 @@ using Test, TestSetExtensions, SafeTestsets
 using TimerOutputs
 
 macro timed_testset(name::String, body)
-    quote @timeit $name @testset $name $body end
+    return quote
+        @timeit $name @testset $name $body
+    end
 end
 macro timed_safetestset(name::String, body)
-    quote @timeit $name @safetestset $name $body end
+    return quote
+        @timeit $name @safetestset $name $body
+    end
 end
 
 @timeit "All tests" @testset ExtendedTestSet "All tests" begin
@@ -29,4 +33,4 @@ end
     end # ProtectedArrays.jl
 end # All tests
 
-print_timer(title="Test run")
+print_timer(title = "Test run")

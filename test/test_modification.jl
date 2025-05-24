@@ -4,7 +4,7 @@ using OffsetArrays, StaticArrays, RecursiveArrayTools
 const err_msg = "`ProtectedArray` does not allow modifying elements with `setindex!`"
 
 function test_modification(a::AbstractArray)
-    @testset "$(a)" begin
+    return @testset "$(a)" begin
         backup = deepcopy(a)
         pa = protect(a)
 
@@ -30,13 +30,13 @@ function test_modification(a::AbstractArray)
     end
 end
 
-test_modification([1,2,3,4,5,6])
-test_modification(OffsetArray([1,2,3,4,5,6], 10))
-test_modification(SArray{Tuple{6}}([1,2,3,4,5,6]))
-test_modification(MArray{Tuple{6}}([1,2,3,4,5,6]))
-test_modification(ArrayPartition([1,2,3], [4,5,6]))
+test_modification([1, 2, 3, 4, 5, 6])
+test_modification(OffsetArray([1, 2, 3, 4, 5, 6], 10))
+test_modification(SArray{Tuple{6}}([1, 2, 3, 4, 5, 6]))
+test_modification(MArray{Tuple{6}}([1, 2, 3, 4, 5, 6]))
+test_modification(ArrayPartition([1, 2, 3], [4, 5, 6]))
 
 test_modification([1 2 3; 4 5 6])
 test_modification(OffsetArray([1 2 3; 4 5 6], (100, 10)))
-test_modification(SArray{Tuple{2,3}}([1 2 3; 4 5 6]))
-test_modification(MArray{Tuple{2,3}}([1 2 3; 4 5 6]))
+test_modification(SArray{Tuple{2, 3}}([1 2 3; 4 5 6]))
+test_modification(MArray{Tuple{2, 3}}([1 2 3; 4 5 6]))
