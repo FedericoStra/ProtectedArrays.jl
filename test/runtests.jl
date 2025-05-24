@@ -20,6 +20,7 @@ end
     @timed_testset "ProtectedArrays.jl" begin
 
         @timed_safetestset "Constructors" include("test_constructors.jl")
+        @timed_safetestset "Printing" include("test_printing.jl")
 
         @timed_testset "Interfaces" begin
             @timed_safetestset "Iteration" include("test_iteration.jl")
