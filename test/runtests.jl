@@ -1,22 +1,32 @@
 using ProtectedArrays
 using Test, TestSetExtensions, SafeTestsets
+using TimerOutputs
 
-@testset ExtendedTestSet "All tests" begin
+macro timed_testset(name::String, body)
+    quote @timeit $name @testset $name $body end
+end
+macro timed_safetestset(name::String, body)
+    quote @timeit $name @safetestset $name $body end
+end
 
-    @safetestset "Aqua tests" include("Aqua.jl")
+@timeit "All tests" @testset ExtendedTestSet "All tests" begin
 
-    @testset "ProtectedArrays.jl" begin
+    @timed_safetestset "Aqua tests" include("Aqua.jl")
 
-        @safetestset "Constructors" include("test_constructors.jl")
+    @timed_testset "ProtectedArrays.jl" begin
 
-        @testset "Interfaces" begin
-            @safetestset "Iteration" include("test_iteration.jl")
-            @safetestset "Indexing" include("test_indexing.jl")
-            @safetestset "Abstract array" include("test_abstract_array.jl")
-            @safetestset "Strided array" include("test_strided_array.jl")
+        @timed_safetestset "Constructors" include("test_constructors.jl")
+
+        @timed_testset "Interfaces" begin
+            @timed_safetestset "Iteration" include("test_iteration.jl")
+            @timed_safetestset "Indexing" include("test_indexing.jl")
+            @timed_safetestset "Abstract array" include("test_abstract_array.jl")
+            @timed_safetestset "Strided array" include("test_strided_array.jl")
         end
 
-        @safetestset "Modification" include("test_modification.jl")
+        @timed_safetestset "Modification" include("test_modification.jl")
 
     end # ProtectedArrays.jl
 end # All tests
+
+print_timer(title="Test run")

@@ -2,7 +2,7 @@
 
 julia_version = "1.11.5"
 manifest_format = "2.0"
-project_hash = "e322d6c3f9361eeb445aafe882da013576530c2f"
+project_hash = "50b6befe3a7b9884e34b7ee075af511fee9ad971"
 
 [[deps.Accessors]]
 deps = ["CompositionsBase", "ConstructionBase", "Dates", "InverseFunctions", "MacroTools"]
@@ -473,6 +473,18 @@ deps = ["DeepDiffs", "Distributed", "Test"]
 git-tree-sha1 = "ccebd99935be339d2ad907589708ba1f0d62bab3"
 uuid = "98d24dd4-01ad-11ea-1b02-c9a08f80db04"
 version = "3.0.0"
+
+[[deps.TimerOutputs]]
+deps = ["ExprTools", "Printf"]
+git-tree-sha1 = "3748bd928e68c7c346b52125cf41fff0de6937d0"
+uuid = "a759f4b9-e2f1-59dc-863e-4aeb61b1ea8f"
+version = "0.5.29"
+
+    [deps.TimerOutputs.extensions]
+    FlameGraphsExt = "FlameGraphs"
+
+    [deps.TimerOutputs.weakdeps]
+    FlameGraphs = "08572546-2f56-4bcf-ba4e-bab62c3a3f89"
 
 [[deps.UUIDs]]
 deps = ["Random", "SHA"]
