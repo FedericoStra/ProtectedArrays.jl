@@ -1,4 +1,5 @@
 using ProtectedArrays
+using OffsetArrays, StaticArrays, RecursiveArrayTools
 
 function test_printing(show_f::Function, a::AbstractArray, s::String)
     backup = deepcopy(a)
@@ -55,4 +56,37 @@ test_printing(
     [:, :, 4] =
      19  21  23
      20  22  24"""
+)
+
+a = OffsetArray([1 3 5; 2 4 6], (100, 10))
+test_printing(show, a, "[1 3 5; 2 4 6]")
+test_printing(
+    (io, x) -> show(io, MIME"text/plain"(), x), a,
+    """
+    2×3 ProtectedMatrix(OffsetArray(::Matrix{Int64}, 101:102, 11:13)) with eltype Int64 with indices 101:102×11:13:
+     1  3  5
+     2  4  6"""
+)
+
+a = SArray{Tuple{2, 3}}([1 3 5; 2 4 6])
+test_printing(show, a, "[1 3 5; 2 4 6]")
+test_printing(
+    (io, x) -> show(io, MIME"text/plain"(), x), a,
+    """
+    2×3 ProtectedMatrix(::StaticArraysCore.SMatrix{2, 3, Int64, 6}) with eltype Int64 with indices SOneTo(2)×SOneTo(3):
+     1  3  5
+     2  4  6"""
+)
+
+a = ArrayPartition([1, 2, 3], [4, 5])
+test_printing(show, a, "[1, 2, 3, 4, 5]")
+test_printing(
+    (io, x) -> show(io, MIME"text/plain"(), x), a,
+    """
+    5-element ProtectedVector(::RecursiveArrayTools.ArrayPartition{Int64, Tuple{Vector{Int64}, Vector{Int64}}}) with eltype Int64:
+     1
+     2
+     3
+     4
+     5"""
 )
