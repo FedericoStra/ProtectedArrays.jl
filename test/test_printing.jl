@@ -90,3 +90,24 @@ test_printing(
      4
      5"""
 )
+
+a = OffsetArray(SA[1 3 5; 2 4 6], (100, 10))
+test_printing(show, a, "[1 3 5; 2 4 6]")
+test_printing(
+    (io, x) -> show(io, MIME"text/plain"(), x), a,
+    """
+    2×3 ProtectedMatrix(OffsetArray(::StaticArraysCore.SMatrix{2, 3, Int64, 6}, 101:102, 11:13)) with eltype Int64 with indices 101:102×11:13:
+     1  3  5
+     2  4  6"""
+)
+pa = protect(a)
+io = IOBuffer()
+show(io, [pa])
+seekstart(io)
+@test read(io, String) == "ProtectedMatrix{Int64, OffsetArrays.OffsetMatrix{Int64, StaticArraysCore.SMatrix{2, 3, Int64, 6}}}[[1 3 5; 2 4 6]]"
+truncate(io, 0)
+show(io, MIME"text/plain"(), [pa])
+seekstart(io)
+@test read(io, String) == """
+    1-element Vector{ProtectedMatrix{Int64, OffsetArrays.OffsetMatrix{Int64, StaticArraysCore.SMatrix{2, 3, Int64, 6}}}}:
+     [1 3 5; 2 4 6]"""
