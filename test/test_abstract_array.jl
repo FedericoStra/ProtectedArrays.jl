@@ -14,6 +14,11 @@ function test_abstract_array(a::AbstractArray)
             @test axes(pa, d) == axes(a, d)
         end
 
+        sa = similar(a)
+        spa = similar(pa)
+        @test typeof(spa) == typeof(sa)
+        @test axes(spa) == axes(sa)
+
         @test parent(pa) === a
         @test parent(pa) == backup
     end
