@@ -12,6 +12,22 @@ function test_strided_array(a::AbstractArray)
             @test stride(pa, d) == stride(a, d)
         end
 
+        try
+            pointer(a)
+        catch
+            # Skip the tests.
+        else
+            @test pointer(a) == pointer(a)
+        end
+
+        try
+            pointer(a, 1)
+        catch
+            # Skip the tests.
+        else
+            @test pointer(a, 1) == pointer(a, 1)
+        end
+
         @test parent(pa) === a
         @test parent(pa) == backup
     end
