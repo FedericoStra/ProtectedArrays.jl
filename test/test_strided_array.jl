@@ -17,7 +17,7 @@ function test_strided_array(a::AbstractArray)
         catch
             # Skip the tests.
         else
-            @test pointer(a) == pointer(a)
+            @test pointer(pa) == pointer(a)
         end
 
         try
@@ -25,7 +25,7 @@ function test_strided_array(a::AbstractArray)
         catch
             # Skip the tests.
         else
-            @test pointer(a, 1) == pointer(a, 1)
+            @test pointer(pa, 1) == pointer(a, 1)
         end
 
         try
@@ -33,7 +33,7 @@ function test_strided_array(a::AbstractArray)
         catch
             # Skip the tests.
         else
-            @test Base.unsafe_convert(Ptr{Int}, a) == Base.unsafe_convert(Ptr{Int}, a)
+            @test Base.unsafe_convert(Ptr{Int}, pa) == Base.unsafe_convert(Ptr{Int}, a)
         end
 
         try
@@ -41,7 +41,7 @@ function test_strided_array(a::AbstractArray)
         catch
             # Skip the tests.
         else
-            @test Base.cconvert(Ptr{Int}, a) == Base.cconvert(Ptr{Int}, a)
+            @test Base.cconvert(Ptr{Int}, pa) == Base.cconvert(Ptr{Int}, a)
         end
 
         @test parent(pa) === a
