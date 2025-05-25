@@ -19,6 +19,9 @@
 
 @inline Base.elsize(::Type{ProtectedArray{T, N, A}}) where {T, N, A} = Base.elsize(A)
 
+@inline function Base.cconvert(::Type{Ptr{T}}, pa::ProtectedArray{T}) where {T}
+    return Base.cconvert(Ptr{T}, parent(pa))
+end
 @inline function Base.unsafe_convert(::Type{Ptr{T}}, pa::ProtectedArray{T}) where {T}
     return Base.unsafe_convert(Ptr{T}, parent(pa))
 end

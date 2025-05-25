@@ -12,6 +12,38 @@ function test_strided_array(a::AbstractArray)
             @test stride(pa, d) == stride(a, d)
         end
 
+        try
+            pointer(a)
+        catch
+            # Skip the tests.
+        else
+            @test pointer(pa) == pointer(a)
+        end
+
+        try
+            pointer(a, 1)
+        catch
+            # Skip the tests.
+        else
+            @test pointer(pa, 1) == pointer(a, 1)
+        end
+
+        try
+            Base.unsafe_convert(Ptr{Int}, a)
+        catch
+            # Skip the tests.
+        else
+            @test Base.unsafe_convert(Ptr{Int}, pa) == Base.unsafe_convert(Ptr{Int}, a)
+        end
+
+        try
+            Base.cconvert(Ptr{Int}, a)
+        catch
+            # Skip the tests.
+        else
+            @test Base.cconvert(Ptr{Int}, pa) == Base.cconvert(Ptr{Int}, a)
+        end
+
         @test parent(pa) === a
         @test parent(pa) == backup
     end
