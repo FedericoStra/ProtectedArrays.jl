@@ -28,6 +28,22 @@ function test_strided_array(a::AbstractArray)
             @test pointer(a, 1) == pointer(a, 1)
         end
 
+        try
+            Base.unsafe_convert(Ptr{Int}, a)
+        catch
+            # Skip the tests.
+        else
+            @test Base.unsafe_convert(Ptr{Int}, a) == Base.unsafe_convert(Ptr{Int}, a)
+        end
+
+        try
+            Base.cconvert(Ptr{Int}, a)
+        catch
+            # Skip the tests.
+        else
+            @test Base.cconvert(Ptr{Int}, a) == Base.cconvert(Ptr{Int}, a)
+        end
+
         @test parent(pa) === a
         @test parent(pa) == backup
     end
